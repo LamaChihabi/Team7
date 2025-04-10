@@ -140,7 +140,12 @@ async def send_discord_message_async(message):
 
 # Main entry
 async def main():
+
     try:
+        await send_discord_message_async("✅ YoBot ist online! 🟢 Testnachricht funktioniert!")
+    except Exception as e:
+
+        logging.error(f"Fehler in main(): {e}")
         await pull_model("llama3.2")
         logs = load_trivy_logs()
         if not logs:
@@ -158,6 +163,8 @@ async def main():
 
     except Exception as e:
         logging.error(f"Error in main process: {e}")
+
+
 
 if __name__ == "__main__":
     asyncio.run(main())
